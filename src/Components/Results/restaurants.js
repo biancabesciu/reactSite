@@ -12,9 +12,9 @@ class Restaurants extends Component {
                 <div className="row">
                     <div className="col-md-4 col-sm-6 mb-4">
                         <div className="card h-100">
-                            <Link to="/Details" target="_blank"><img className="card-img-top image-container" src={this.props.business.imageSrc} alt={this.props.business.name} /></Link>
+                            <Link to="/Details" target="_blank" onClick={this.props.handleDetailChange}><img className="card-img-top image-container" src={this.props.business.imageSrc} alt={this.props.business.name} /></Link>
                             <h2 className="card-title">
-                                <Link to="/Details" target="_blank">{this.props.business.name}</Link>
+                                <Link to="/Details" target="_blank" onClick={this.props.handleDetailChange}>{this.props.business.name}</Link>
                             </h2>
 
                             <div className="card-body Restaurants-information">

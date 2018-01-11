@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 //css
 import "../../Assets/css/searchBar.css";
-import Restaurants from "../Results/restaurants";
 
 class SearchBar extends Component {
     constructor(props){

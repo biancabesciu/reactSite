@@ -10,13 +10,13 @@ import Results from './Components/Results/results';
 import SearchBar from './Components/Header/searchBar';
 import Details from './Components/Pages/restaurantDetails';
 import Yelp from './Util/Yelp';
-import Restaurants from "./Components/Results/restaurants";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {businesses: []};
         this.searchYelp = this.searchYelp.bind(this);
+        this.detailsYelp = this.detailsYelp.bind(this);
     }
 
     searchYelp(term, location, sortBy) {
@@ -24,6 +24,14 @@ class App extends Component {
            this.setState({businesses:businesses})
        });
     }
+
+    detailsYelp(locale) {
+        Yelp.details(locale).then(businesses => {
+            this.setState({businesses:businesses})
+        });
+
+    }
+
 
     render() {
         return (
