@@ -16,7 +16,6 @@ class App extends Component {
         super(props);
         this.state = {businesses: []};
         this.searchYelp = this.searchYelp.bind(this);
-        this.detailsYelp = this.detailsYelp.bind(this);
     }
 
     searchYelp(term, location, sortBy) {
@@ -24,14 +23,6 @@ class App extends Component {
            this.setState({businesses:businesses})
        });
     }
-
-    detailsYelp(locale) {
-        Yelp.details(locale).then(businesses => {
-            this.setState({businesses:businesses})
-        });
-
-    }
-
 
     render() {
         return (
@@ -41,7 +32,7 @@ class App extends Component {
                     <Header />
                     <SearchBar searchYelp={this.searchYelp} />
                     <Results businesses={this.state.businesses} />
-                    <Route exact path='/Details' component={Details} />
+                    <Route exact path='/Details/:businessId' component={Details} />
 
                 </div>
             </Router>

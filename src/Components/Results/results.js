@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 //components
 import Restaurants from './restaurants';
-import Details from './../Pages/restaurantDetails';
 
 class Results extends Component {
     render() {
@@ -10,9 +9,7 @@ class Results extends Component {
             <div className="Results">
                 {this.props.businesses.map(business => {
                     return <Restaurants key={business.id} business={business}/>;
-
                 })}
-
             </div>
         );
     }

@@ -1,56 +1,38 @@
 import React, { Component } from 'react';
+import Yelp from '../../Util/Yelp';
 
 class Details extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            'locale': ''
-        };
-        this.handleDetailChange = this.handleDetailChange.bind(this);
+        this.state = {restaurantDetails: ''};
+        this.detailsYelp = this.detailsYelp.bind(this);
+
     }
 
-    handleDetailChange(event) {
-        this.setState({locale:this.state.locale});
-        event.preventDefault();
+    detailsYelp(businessId) {
+        Yelp.details(businessId).then(restaurantDetails => {
+            this.setState({restaurantDetails:restaurantDetails})
+        });
     }
+   render() {
+       {this.detailsYelp(this.props.match.params.businessId)}
+       return (
+           <div className="container-fluid">
+               <div className="card h-100">
+                   <h1 className="card-title">
+                       {this.state.restaurantDetails.name}
+                   </h1>
 
-    render() {
-        return (
-            <div className="container-fluid">
-                <div className="Results">
-                </div>
+                   <img className="card-img-top image-container" src={this.state.restaurantDetails.imageSrc} alt={this.state.restaurantDetails.name} />
 
-                <div className="card h-100">
-                    <h1 className="card-title">
-                        {this.props.business.name}
-                    </h1>
-
-                    <img className="card-img-top image-container" src={this.props.business.imageSrc} alt={this.props.business.name} />
-
-                    <div className="card-body Restaurants-information">
-                        <div className="Restaurants-address">
-                            <p>{this.props.business.price}</p>
-                            <p>{this.props.business.hours}</p>
-                            <p>{this.props.business.phone}</p>
-                            <p>{this.props.business.address}</p>
-                            <p>{this.props.business.city}</p>
-                            <p>{this.props.business.state}</p>
-                        </div>
-
-                        <div className="Restaurants-reviews">
-                            <h3 className="rating">{this.props.business.rating} stars</h3>
-                            <p>{this.props.business.reviewCount}</p>
-                        </div>
-
-                        <div className="Restaurants-photos">
-                            <p>{this.props.business.photos}</p>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        )
-    }
+                   <div className="card-body Restaurants-information">
+                       <div className="Restaurants-address">
+                           <p>{this.state.restaurantDetails.name}</p>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       )
+   }
 }
-
 export default Details;
